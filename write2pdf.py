@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-
+#to create a dataframe pandas needs equal size of list as values
 def normalize_list(FUNCTION_ATTACK):
     total_functions =[]
     for key,value in FUNCTION_ATTACK.items():
@@ -17,7 +17,6 @@ def normalize_list(FUNCTION_ATTACK):
 
 
 def mapping2pdf(mapping,filename):
-    #plt.rcParams.update({'font.size': 18})
     df = pd.DataFrame.from_dict(mapping)
     fig, ax = plt.subplots()
     # hide axes
@@ -25,8 +24,6 @@ def mapping2pdf(mapping,filename):
     ax.axis('off')
     ax.axis('tight')
     ax.table(cellText=df.values, colLabels=df.columns.str.capitalize(), loc='center')
-    #fig.tight_layout()
     plt.rc('font', size=18)
+    #[Todo:] need to clean the filename
     plt.savefig(filename+'.png', dpi=300, bbox_inches='tight')
-    #plt.show()
-    #plt.save()
