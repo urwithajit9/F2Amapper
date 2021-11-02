@@ -41,6 +41,7 @@ attack_list = ['enumeration', 'injection','evasion','spying','internet', 'anti_d
 import pefile
 import os,sys
 import argparse
+from write2pdf import mapping2pdf,normalize_list
 
 
 
@@ -152,6 +153,8 @@ try:
     IMPORTED_FUNCTIONS=  extract_functions(pe)
     if args.mapper:
         MAP_RESULTS, FUNCTION_ATTACK = mapping(IMPORTED_FUNCTIONS)
+        FUNCTION_ATTACK = normalize_list(FUNCTION_ATTACK)
+        mapping2pdf(FUNCTION_ATTACK,exe_path)
         show_mapping(FUNCTION_ATTACK)
 except OSError as e:
     print(e)
